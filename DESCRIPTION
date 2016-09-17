@@ -1,0 +1,18 @@
+Package: pipeplotter
+Type: Package
+Title: Syntactic ggplot2 Sugar for a Tidy World
+Version: 0.1.0
+Author: Thomas Lin Pedersen
+Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
+Description: The success of the pipe from the magrittr pacakge (%>%) has created
+    a divide between the '+' opperator in ggplot2 and the pipe used by many to
+    create the data used for plotting. pipeplotter solves this by adding a thin,
+    verb-based wrapper around the ggplot2 API so users can choose to keep using
+    the pipe for chaining together ggplot2 operations.
+License: GPL-2
+LazyData: TRUE
+Depends:
+    ggplot2
+Imports:
+    magrittr
+RoxygenNote: 5.0.1
