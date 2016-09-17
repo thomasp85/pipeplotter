@@ -1,169 +1,133 @@
-#' @export
-add_layer <- function(., geom = NULL, stat = NULL, data = NULL, mapping = NULL,
-                      position = NULL, inherit.aes = TRUE, subset = NULL,
-                      show.legend = NA, ...) {
-    . + layer(geom = geom, stat = stat, data = data, mapping = mapping,
-              position = position, params = list(...),
-              inherit.aes = inherit.aes, subset = subset,
-              show.legend = show.legend)
+forward <- function(f) {
+  fmls <- formals(f)
+  called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
+  call <- as.call(c(substitute(f), called_fmls))
+
+  formals(f) <- append(fmls, alist(. = ), after = 0)
+  body(f) <- bquote(. + .(call),
+    as.environment(list(call = call)))
+  f
 }
+
 #' @export
-add_abline <- function(., ...) {
-    . + geom_abline(...)
-}
+add_layer <- forward(layer)
+
 #' @export
-add_bar <- function(., ...) {
-    . + geom_bar(...)
-}
+add_abline <- forward(geom_abline)
+
 #' @export
-add_bin2d <- function(., ...) {
-    . + geom_bin2d(...)
-}
+add_bar <- forward(geom_bar)
+
 #' @export
-add_blank <- function(., ...) {
-    . + geom_blank(...)
-}
+add_bin2d <- forward(geom_bin2d)
+
 #' @export
-add_boxplot <- function(., ...) {
-    . + geom_boxplot(...)
-}
+add_blank <- forward(geom_blank)
+
 #' @export
-add_col <- function(., ...) {
-    . + geom_col(...)
-}
+add_boxplot <- forward(geom_boxplot)
+
 #' @export
-add_contour <- function(., ...) {
-    . + geom_contour(...)
-}
+add_col <- forward(geom_col)
+
 #' @export
-add_count <- function(., ...) {
-    . + geom_count(...)
-}
+add_contour <- forward(geom_contour)
+
 #' @export
-add_crossbar <- function(., ...) {
-    . + geom_crossbar(...)
-}
+add_count <- forward(geom_count)
+
 #' @export
-add_curve <- function(., ...) {
-    . + geom_curve(...)
-}
+add_crossbar <- forward(geom_crossbar)
+
 #' @export
-add_defaults <- function(., ...) {
-    . + geom_defaults(...)
-}
+add_curve <- forward(geom_curve)
+
 #' @export
-add_density <- function(., ...) {
-    . + geom_density(...)
-}
+add_defaults <- forward(update_geom_defaults)
+
 #' @export
-add_density2d <- function(., ...) {
-    . + geom_density2d(...)
-}
+add_density <- forward(geom_density)
+
 #' @export
-add_dotplot <- function(., ...) {
-    . + geom_dotplot(...)
-}
+add_density2d <- forward(geom_density2d)
+
 #' @export
-add_errorbar <- function(., ...) {
-    . + geom_errorbar(...)
-}
+add_dotplot <- forward(geom_dotplot)
+
 #' @export
-add_errorbarh <- function(., ...) {
-    . + geom_errorbarh(...)
-}
+add_errorbar <- forward(geom_errorbar)
+
 #' @export
-add_freqplot <- function(., ...) {
-    . + geom_freqplot(...)
-}
+add_errorbarh <- forward(geom_errorbarh)
+
 #' @export
-add_hex <- function(., ...) {
-    . + geom_hex(...)
-}
+add_freqpoly <- forward(geom_freqpoly)
+
 #' @export
-add_histogram <- function(., ...) {
-    . + geom_histogram(...)
-}
+add_hex <- forward(geom_hex)
+
 #' @export
-add_hline <- function(., ...) {
-    . + geom_hline(...)
-}
+add_histogram <- forward(geom_histogram)
+
 #' @export
-add_jitter <- function(., ...) {
-    . + geom_jitter(...)
-}
+add_hline <- forward(geom_hline)
+
 #' @export
-add_label <- function(., ...) {
-    . + geom_label(...)
-}
+add_jitter <- forward(geom_jitter)
+
 #' @export
-add_linerange <- function(., ...) {
-    . + geom_linerange(...)
-}
+add_label <- forward(geom_label)
+
 #' @export
-add_map <- function(., ...) {
-    . + geom_map(...)
-}
+add_linerange <- forward(geom_linerange)
+
 #' @export
-add_path <- function(., ...) {
-    . + geom_path(...)
-}
+add_map <- forward(geom_map)
+
 #' @export
-add_point <- function(., ...) {
-    . + geom_point(...)
-}
+add_path <- forward(geom_path)
+
 #' @export
-add_pointrange <- function(., ...) {
-    . + geom_pointrange(...)
-}
+add_point <- forward(geom_point)
+
 #' @export
-add_polygon <- function(., ...) {
-    . + geom_polygon(...)
-}
+add_pointrange <- forward(geom_pointrange)
+
 #' @export
-add_quantile <- function(., ...) {
-    . + geom_quantile(...)
-}
+add_polygon <- forward(geom_polygon)
+
 #' @export
-add_raster <- function(., ...) {
-    . + geom_raster(...)
-}
+add_quantile <- forward(geom_quantile)
+
 #' @export
-add_rect <- function(., ...) {
-    . + geom_rect(...)
-}
+add_raster <- forward(geom_raster)
+
 #' @export
-add_ribbon <- function(., ...) {
-    . + geom_ribbon(...)
-}
+add_rect <- forward(geom_rect)
+
 #' @export
-add_rug <- function(., ...) {
-    . + geom_rug(...)
-}
+add_ribbon <- forward(geom_ribbon)
+
 #' @export
-add_segment <- function(., ...) {
-    . + geom_segment(...)
-}
+add_rug <- forward(geom_rug)
+
 #' @export
-add_smooth <- function(., ...) {
-    . + geom_smooth(...)
-}
+add_segment <- forward(geom_segment)
+
 #' @export
-add_spoke <- function(., ...) {
-    . + geom_spoke(...)
-}
+add_smooth <- forward(geom_smooth)
+
 #' @export
-add_text <- function(., ...) {
-    . + geom_text(...)
-}
+add_spoke <- forward(geom_spoke)
+
 #' @export
-add_tile <- function(., ...) {
-    . + geom_tile(...)
-}
+add_text <- forward(geom_text)
+
 #' @export
-add_violin <- function(., ...) {
-    . + geom_violin(...)
-}
+add_tile <- forward(geom_tile)
+
 #' @export
-add_vline <- function(., ...) {
-    . + geom_vline(...)
-}
+add_violin <- forward(geom_violin)
+
+#' @export
+add_vline <- forward(geom_vline)
