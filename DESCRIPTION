@@ -15,4 +15,6 @@ Depends:
     ggplot2
 Imports:
     magrittr
+Remotes:
+  hadley/ggplot2
 RoxygenNote: 5.0.1
