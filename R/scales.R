@@ -4,7 +4,7 @@ set_scales <- function(., ...) {
     scales <- lazy_dots(...)
     scale_names <- names(scales)
     
-    if (is.null(scale_names) || any(scale_names == "")) {
+    if (any(scale_names == "")) {
         stop("scales must be named", call. = FALSE)
     }
     for (scale in scale_names) {
